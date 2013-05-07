@@ -15,8 +15,10 @@ To start, be sure to include the js file:
 
 
 To convert a form, simply call the readOnlyForm method on the element:
-```JS
+```HTML
+<script language="text/javascript">
 var readOnlyForm = $("form[name='foo']").readOnlyForm();
+</script>
 ```
 
 The method will return the form element.

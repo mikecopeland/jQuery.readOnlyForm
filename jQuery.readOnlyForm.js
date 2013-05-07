@@ -1,0 +1,60 @@
+(function ($) {
+
+  function hideSubmitButtons (formElem) {
+  	$(formElem).find(":submit").hide();
+  }
+
+  function hideButtons (formElem){
+  	$(formElem).find(":button").hide();
+  }
+
+  function replaceTextFields (formElem) {
+  	$(formElem).find("input[type='text']").each(function(){
+  		$(this).after("<div id='readOnly-" + $(this).attr("name") + "'>" + $(this).val() + "</div>");
+  		$(this).hide();
+  	});
+  }
+
+  function replaceTextAreas (formElem) {
+  	$(formElem).find("textarea").each(function(){
+  		$(this).after("<div id='readOnly-" + $(this).attr("name") + "'>" + $(this).val().replace(/\n/g, "<br />") + "</div>");
+  		$(this).hide();
+  	});
+  }
+
+  function disableCheckboxes (formElem) {
+  	$(formElem).find("input[type='checkbox']").attr("disabled", "disabled");
+  }
+
+  function disableRadioButtons (formElem) {
+  	$(formElem).find("input[type='radio']").attr("disabled", "disabled");
+  }
+
+  function replaceSelects (formElem) {
+  	$(formElem).find("select").each(function(){
+  		var selectedValues = [];
+  		$(this).children("option:selected").each(function(){
+  			if($(this).html() != ""){
+  				selectedValues.push($(this).html());
+  			}	
+  		});
+  		$(this).after("<div id='readOnly-" + $(this).attr("name") + "'>" + selectedValues.join(", ") + "</div>");
+  		$(this).hide();
+  	});
+  }	
+
+  $.fn.readOnlyForm = function () {
+
+    hideSubmitButtons(this);
+    hideButtons(this);
+    replaceTextFields(this);
+    replaceTextAreas(this);
+    disableCheckboxes(this); 
+    disableRadioButtons(this);
+    replaceSelects(this);
+
+    return $(this);
+
+  };
+
+})( jQuery );

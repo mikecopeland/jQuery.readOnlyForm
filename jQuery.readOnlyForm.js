@@ -43,6 +43,12 @@
   	});
   }	
 
+  function disableFormElement (formElem) {
+	$(formElem).submit = function (){
+		return false;
+	} 	
+  }
+
   $.fn.readOnlyForm = function () {
 
     hideSubmitButtons(this);
@@ -52,6 +58,7 @@
     disableCheckboxes(this); 
     disableRadioButtons(this);
     replaceSelects(this);
+    disableFormElement(this);
 
     return $(this);
 

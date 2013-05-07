@@ -13,7 +13,7 @@ test("Setup", function(){
 
 module("Constructor");
 test("Constructor", function() {
-  readOnlyForm = $("form[name='foo']").readOnlyForm();
+  var readOnlyForm = $("form[name='foo']").readOnlyForm();
   ok(readOnlyForm, "object exists");
   equal(readOnlyForm.length, 1, "one form element found");
 });

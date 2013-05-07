@@ -1,7 +1,7 @@
 jQuery.readOnlyForm
 ===================
 
-This jQuery plugin converts a form to a read-equivalent. All submit and button elements will be hidden. 
+This jQuery plugin converts a form to a read-only equivalent. All submit and button elements will be hidden. 
 Text fields, text areas and select elements will be translated to their text values. Checkbox and radio elements
 will become disabled.
 

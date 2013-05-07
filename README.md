@@ -9,10 +9,14 @@ Usage
 =====
 
 To start, be sure to include the js file:
+```HTML
 <script src="jQuery.readOnlyForm.js"></script>
+```
 
 
 To convert a form, simply call the readOnlyForm method on the element:
+```JS
 var readOnlyForm = $("form[name='foo']").readOnlyForm();
+```
 
 The method will return the form element.

@@ -57,3 +57,49 @@ test("Hide Selects", function() {
   equal($("form[name='foo']").find("#readOnly-select2").length, 1, "text equivalents is shown");
   equal($("form[name='foo']").find("#readOnly-select2").html(), "value A, value B, value E", "text equivalent matches value");
 });
+
+module("is='readonly-form' attribute constructor method");
+test("is readonly-form constructor", function(){
+    var readOnlyForm = $("form[name='bar']");
+    ok(readOnlyForm, "object exists");
+    equal(readOnlyForm.length, 1, "one form element found");
+})
+module("Implementation");
+test("Hide Submits", function() {
+  equal($("form[name='bar']").find(":submit:visible").length, 0, "submit buttons are hidden");
+});
+
+test("Hide Buttons", function() {
+  equal($("form[name='bar']").find(":button:visible").length, 0, "buttons are hidden");
+});
+
+test("Hide TextFields", function() {
+  equal($("form[name='bar']").find("input[type='text']:visible").length, 0, "text fields are hidden");
+  equal($("form[name='bar']").find("#readOnly-text1").length, 1, "text equivalents is shown");
+  equal($("form[name='bar']").find("#readOnly-text1").html(), "lorem", "text equivalent matches value");
+  equal($("form[name='bar']").find("#readOnly-text2").length, 1, "text equivalents is shown");
+  equal($("form[name='bar']").find("#readOnly-text2").html(), "", "text equivalent matches value");
+});
+
+test("Hide TextAreas", function() {
+  equal($("form[name='bar']").find("textarea:visible").length, 0, "text fields are hidden");
+  equal($("form[name='bar']").find("#readOnly-textarea1").length, 1, "a text equivalent is shown");
+  var txtVal = $("form[name='bar']").find("#readOnly-textarea1").html();
+  ok(txtVal.indexOf("Lorem ipsum<br /> dolor sit amet."), "text equivalent matches value");
+});
+
+test("Disable Radios", function() {
+  equal($("form[name='bar']").find("input[type='radio']:enabled").length, 0, "radios are disabled");
+});
+
+test("Disable Checkboxes", function() {
+  equal($("form[name='bar']").find("input[type='checkbox']:enabled").length, 0, "checkboxes are disabled");
+});
+
+test("Hide Selects", function() {
+  equal($("form[name='bar']").find("select:visible").length, 0, "selects are hidden");
+  equal($("form[name='bar']").find("#readOnly-select1").length, 1, "text equivalents is shown");
+  equal($("form[name='bar']").find("#readOnly-select1").html(), "value 1", "text equivalent matches value");
+  equal($("form[name='bar']").find("#readOnly-select2").length, 1, "text equivalents is shown");
+  equal($("form[name='bar']").find("#readOnly-select2").html(), "value A, value B, value E", "text equivalent matches value");
+});

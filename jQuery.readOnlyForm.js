@@ -64,4 +64,10 @@
 
   };
 
-})( jQuery );
+})(jQuery);
+
+$(document).ready(function () {
+    $('[is="readonly-form"]').each(function () {
+        $(this).readOnlyForm();
+    });
+});

@@ -22,12 +22,28 @@
   	});
   }
 
+  function disableTextFields (formElem){
+       $(formElem).find("input[type='text']").attr("disabled", "disabled");
+  }
+
+  function disableTextAreas (formElem){
+       $(formElem).find("textarea").attr("disabled", "disabled");
+  }
+
   function disableCheckboxes (formElem) {
   	$(formElem).find("input[type='checkbox']").attr("disabled", "disabled");
   }
 
   function disableRadioButtons (formElem) {
   	$(formElem).find("input[type='radio']").attr("disabled", "disabled");
+  }
+
+  function disableSubmitButtons (formElem) {
+    $(formElem).find(":submit").attr("disabled", "disabled");
+  }
+
+  function disableButtons (formElem){
+    $(formElem).find(":button").attr("disabled", "disabled");
   }
 
   function replaceSelects (formElem) {
@@ -49,12 +65,23 @@
 	} 	
   }
 
-  $.fn.readOnlyForm = function () {
+  $.fn.readOnlyForm = function (params) {
+    if(typeof params !== 'undefined' && typeof params.preserveButtons !== 'undefined' && params.preserveButtons){
+        disableSubmitButtons(this);
+        disableButtons(this);
+    }else{
+        hideSubmitButtons(this);
+        hideButtons(this);
+    }
 
-    hideSubmitButtons(this);
-    hideButtons(this);
-    replaceTextFields(this);
-    replaceTextAreas(this);
+    if(typeof params !== 'undefined' && typeof params.preserveTextfields !== 'undefined' && params.preserveTextfields){
+        disableTextFields(this);
+        disableTextAreas(this);
+    }else{
+        replaceTextFields(this);
+        replaceTextAreas(this);
+    }
+
     disableCheckboxes(this); 
     disableRadioButtons(this);
     replaceSelects(this);

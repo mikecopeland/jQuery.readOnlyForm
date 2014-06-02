@@ -1,71 +1,71 @@
-(function ($) {
+(function (jQuery) {
 
   function hideSubmitButtons (formElem) {
-  	$(formElem).find(":submit").hide();
+  	jQuery(formElem).find(":submit").hide();
   }
 
   function hideButtons (formElem){
-  	$(formElem).find(":button").hide();
+  	jQuery(formElem).find(":button").hide();
   }
 
   function replaceTextFields (formElem) {
-  	$(formElem).find("input[type='text']").each(function(){
-  		$(this).after("<div id='readOnly-" + $(this).attr("name") + "'>" + $(this).val() + "</div>");
-  		$(this).hide();
+  	jQuery(formElem).find("input[type='text']").each(function(){
+  		jQuery(this).after("<div id='readOnly-" + jQuery(this).attr("name") + "'>" + jQuery(this).val() + "</div>");
+  		jQuery(this).hide();
   	});
   }
 
   function replaceTextAreas (formElem) {
-  	$(formElem).find("textarea").each(function(){
-  		$(this).after("<div id='readOnly-" + $(this).attr("name") + "'>" + $(this).val().replace(/\n/g, "<br />") + "</div>");
-  		$(this).hide();
+  	jQuery(formElem).find("textarea").each(function(){
+  		jQuery(this).after("<div id='readOnly-" + jQuery(this).attr("name") + "'>" + jQuery(this).val().replace(/\n/g, "<br />") + "</div>");
+  		jQuery(this).hide();
   	});
   }
 
   function disableTextFields (formElem){
-       $(formElem).find("input[type='text']").attr("disabled", "disabled");
+       jQuery(formElem).find("input[type='text']").attr("disabled", "disabled");
   }
 
   function disableTextAreas (formElem){
-       $(formElem).find("textarea").attr("disabled", "disabled");
+       jQuery(formElem).find("textarea").attr("disabled", "disabled");
   }
 
   function disableCheckboxes (formElem) {
-  	$(formElem).find("input[type='checkbox']").attr("disabled", "disabled");
+  	jQuery(formElem).find("input[type='checkbox']").attr("disabled", "disabled");
   }
 
   function disableRadioButtons (formElem) {
-  	$(formElem).find("input[type='radio']").attr("disabled", "disabled");
+  	jQuery(formElem).find("input[type='radio']").attr("disabled", "disabled");
   }
 
   function disableSubmitButtons (formElem) {
-    $(formElem).find(":submit").attr("disabled", "disabled");
+    jQuery(formElem).find(":submit").attr("disabled", "disabled");
   }
 
   function disableButtons (formElem){
-    $(formElem).find(":button").attr("disabled", "disabled");
+    jQuery(formElem).find(":button").attr("disabled", "disabled");
   }
 
   function replaceSelects (formElem) {
-  	$(formElem).find("select").each(function(){
+  	jQuery(formElem).find("select").each(function(){
   		var selectedValues = [];
-  		$(this).children("option:selected").each(function(){
-  			if($(this).html() != ""){
-  				selectedValues.push($(this).html());
+  		jQuery(this).children("option:selected").each(function(){
+  			if(jQuery(this).html() != ""){
+  				selectedValues.push(jQuery(this).html());
   			}	
   		});
-  		$(this).after("<div id='readOnly-" + $(this).attr("name") + "'>" + selectedValues.join(", ") + "</div>");
-  		$(this).hide();
+  		jQuery(this).after("<div id='readOnly-" + jQuery(this).attr("name") + "'>" + selectedValues.join(", ") + "</div>");
+  		jQuery(this).hide();
   	});
   }	
 
   function disableFormElement (formElem) {
-	$(formElem).submit = function (){
+	jQuery(formElem).submit = function (){
 		return false;
 	} 	
   }
 
-  $.fn.readOnlyForm = function (params) {
+  jQuery.fn.readOnlyForm = function (params) {
     if(typeof params !== 'undefined' && typeof params.preserveButtons !== 'undefined' && params.preserveButtons){
         disableSubmitButtons(this);
         disableButtons(this);
@@ -87,14 +87,14 @@
     replaceSelects(this);
     disableFormElement(this);
 
-    return $(this);
+    return jQuery(this);
 
   };
 
 })(jQuery);
 
-$(document).ready(function () {
-    $('[is="readonly-form"]').each(function () {
-        $(this).readOnlyForm();
+jQuery(document).ready(function () {
+    jQuery('[is="readonly-form"]').each(function () {
+        jQuery(this).readOnlyForm();
     });
 });

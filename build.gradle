@@ -20,5 +20,4 @@ minifyJs {
 }
 
 defaultTasks 'build'
-
 task build(dependsOn: minifyJs) << {}
